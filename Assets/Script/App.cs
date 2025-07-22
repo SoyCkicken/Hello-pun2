@@ -7,28 +7,29 @@ using UnityEngine.SceneManagement;
 
 public class App : MonoBehaviourPunCallbacks
 {
-    #region Private Serializable Fields
+    string gameVersion = "1";
 
-    #endregion
-
-    #region Private Fields
-    string GameVersion = "1";
-    #endregion
-    #region MonoBehaviour CallBacks
-    private void Awake()
+    void Awake()
     {
+        // #Critical
+        // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
         PhotonNetwork.AutomaticallySyncScene = true;
+
         DontDestroyOnLoad(this.gameObject);
-        SceneManager.LoadScene("LobbyScene");
-        asyncOperation.completed += operation => { };
+
+        var asyncOperation = SceneManager.LoadSceneAsync("LobbyScene");
+        asyncOperation.completed += operation =>
+        {
+
+        };
     }
 
-    private void Start()
+    void Start()
     {
         Connect();
-        //Debug.Log(PhotonNetwork.IsConnected);
+
     }
-    #endregion
+
     /// <summary>
     /// Start the connection process.
     /// - If already connected, we attempt joining a random room
@@ -45,7 +46,7 @@ public class App : MonoBehaviourPunCallbacks
         else
         {
             // #Critical, we must first and foremost connect to Photon Online Server.
-            PhotonNetwork.GameVersion = GameVersion;
+            PhotonNetwork.GameVersion = gameVersion;
             PhotonNetwork.ConnectUsingSettings();
         }
     }
