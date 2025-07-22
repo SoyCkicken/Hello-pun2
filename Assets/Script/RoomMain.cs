@@ -12,12 +12,12 @@ public class RoomMain : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("∑Î ∏ﬁ¿Œ æÓø˛¿Ã≈©");
+        Debug.Log("∑Î ∏ﬁ¿Œ AWake");
     }
 
     public void Init()
     {
-        Debug.Log("∑Î ∏ﬁ¿Œ ¿Œ¿’ ");
+        Debug.Log("∑Î ∏ﬁ¿Œ Init ");
         Debug.Log($"≥ª[{PhotonNetwork.LocalPlayer.NickName}]∞° πÊ¿Â¿Œ∞°? : {PhotonNetwork.IsMasterClient}");
         if (PhotonNetwork.IsMasterClient == true)
         {
@@ -34,7 +34,7 @@ public class RoomMain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("∑Î ∏ﬁ¿Œ Ω∫≈∏∆Æ");
+        Debug.Log("∑Î ∏ﬁ¿Œ Start");
     }
 
     
