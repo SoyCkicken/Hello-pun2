@@ -86,6 +86,6 @@ public class LobbyMain : MonoBehaviourPunCallbacks
     }
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log($"onroomListUpdate {roomList}");
+        Debug.Log($"onroomListUpdate {roomList.Count}");
     }
 }
