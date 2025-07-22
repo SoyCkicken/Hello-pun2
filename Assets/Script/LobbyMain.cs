@@ -89,10 +89,7 @@ public class LobbyMain : MonoBehaviourPunCallbacks
     {
         Debug.Log($"onroomListUpdate {roomList.Count}");
     }
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.Log($"OnPlayerEnteredRoom {newPlayer.NickName}");
-    }
+  
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         Debug.Log($"OnJoinRandomFailed : errorcode{returnCode} message{message}");

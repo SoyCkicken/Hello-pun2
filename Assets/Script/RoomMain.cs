@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 
-public class RoomMain : MonoBehaviour
+public class RoomMain : MonoBehaviourPunCallbacks
 {
     public TMP_Text player1NickNameTEXT;
     public TMP_Text player2NickNameTEXT;
@@ -36,6 +37,16 @@ public class RoomMain : MonoBehaviour
     {
         Debug.Log("룸 메인 Start");
     }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        Debug.Log($"OnPlayerEnteredRoom {newPlayer.NickName}");
+    }
+    public override void OnJoinedRoom()
+    {
+        Debug.Log($"[RoomMain] 방에 접속을 했습니다");
+        Debug.Log(PhotonNetwork.CurrentRoom.Name);
+        Debug.Log(PhotonNetwork.PlayerList);
+        Debug.Log(PhotonNetwork.IsMasterClient);
+    }
 
-    
 }
