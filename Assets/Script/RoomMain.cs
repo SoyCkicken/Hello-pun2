@@ -39,14 +39,21 @@ public class RoomMain : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        Debug.Log($"OnPlayerEnteredRoom {newPlayer.NickName}");
+        //손님임
+        player2NickNameTEXT.text = newPlayer.NickName;
+        Debug.Log($"[RoomMain] 다른 플레이어가 룸에 입장 했습니다. : {newPlayer}");
     }
+
     public override void OnJoinedRoom()
     {
-        Debug.Log($"[RoomMain] 방에 접속을 했습니다");
-        Debug.Log(PhotonNetwork.CurrentRoom.Name);
-        Debug.Log(PhotonNetwork.PlayerList);
-        Debug.Log(PhotonNetwork.IsMasterClient);
+        //나임
+        Debug.Log($"[RoomMain] 방에 입장했습니다.");
+        Debug.Log($"방이름 : {PhotonNetwork.CurrentRoom.Name}");
+        Debug.Log($"방에있는 사람들 : {PhotonNetwork.PlayerList.Length}");
+        Debug.Log($"내가({PhotonNetwork.LocalPlayer.NickName}) 방장인가? {PhotonNetwork.IsMasterClient}");
+
+        player2NickNameTEXT.text = PhotonNetwork.NickName;
+        player1NickNameTEXT.text = PhotonNetwork.MasterClient.NickName;
     }
 
 }
