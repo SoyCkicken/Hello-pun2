@@ -51,8 +51,9 @@ public class RoomMain : MonoBehaviourPunCallbacks
         readyButton.interactable = false;
             GetComponent<PhotonView>().RPC("RPC_OnClickReadyButton", RpcTarget.MasterClient);
         });
-        startButton.onClick.AddListener(() => { 
-        //손님이 준비가 되어 있을때 눌를수 있어야됨
+        startButton.onClick.AddListener(() => {
+            //손님이 준비가 되어 있을때 눌를수 있어야됨
+            PhotonNetwork.LoadLevel("GameScene");
         });
     }
 
@@ -82,5 +83,6 @@ public class RoomMain : MonoBehaviourPunCallbacks
     public void RPC_OnClickReadyButton(PhotonMessageInfo info)
     {
         Debug.Log($"RPC_OnClickReadyButton 이 눌렸습니다 sender : {info.Sender.NickName}, sender is Masster = {info.Sender.IsMasterClient}");
+        startButton.interactable = true;
     }
 }
